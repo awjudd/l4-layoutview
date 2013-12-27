@@ -15,7 +15,7 @@ class LayoutView extends Environment
      * 
      * @var array
      */
-    protected $namespaces = array();
+    protected $namespaces = NULL;
 
     /**
      * The current layout folder that is selected
@@ -76,9 +76,14 @@ class LayoutView extends Environment
      */
     public function make($view, $data = array(), $mergeData = array())
     {
-        // Grab the namespace information from the configuration file
-        $this->namespaces = Config::get('layoutview::namespaces');
+        // Check if there are any namespaces yet
+        if($this->namespaces === NULL)
+        {
+            // There aren't so grab the namespace information from the configuration file
+            $this->namespaces = Config::get('layoutview::namespaces');
+        }
 
+        // The view that will be rendered
         $target = NULL;
 
         // Cycle through all of the namespaces
