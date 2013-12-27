@@ -22,7 +22,7 @@ class LayoutView extends Environment
      * 
      * @var string
      */
-    public $selected_layout = NULL;
+    private $selected_layout = NULL;
 
     /**
      * The layout folder that is used if a view isn't available in the current selected
@@ -30,7 +30,7 @@ class LayoutView extends Environment
      * 
      * @var string
      */
-    public $fallback_layout = NULL;
+    private $fallback_layout = NULL;
 
     /**
      * Create a new view environment instance.
@@ -46,11 +46,21 @@ class LayoutView extends Environment
         parent::__construct($engines, $finder, $events);
     }
 
+    /**
+     * The layout that is being used for the core of display purposes.
+     * 
+     * @param string $layout
+     */
     public function setSelectedLayout($layout)
     {
         $this->selected_layout = $layout;
     }
 
+    /**
+     * The fallback layout if the view doesn't exist in the selected layout.
+     * 
+     * @param string $layout
+     */
     public function setFallbackLayout($layout)
     {
         $this->fallback_layout = $layout;
@@ -103,6 +113,7 @@ class LayoutView extends Environment
             }
         }
 
+        // Render the layout
         return parent::make($target, $data, $mergeData);;
     }
 }
