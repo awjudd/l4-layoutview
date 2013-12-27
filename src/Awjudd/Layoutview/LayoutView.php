@@ -1,8 +1,13 @@
 <?php namespace Awjudd\Layoutview;
 
-use Illuminate\View\View;
+use Illuminate\View\Environment;
+use Illuminate\View\Engines\EngineResolver;
+use Illuminate\View\ViewFinderInterface;
+use Illuminate\Events\Dispatcher;
 
-class LayoutView extends View
+use Config;
+
+class LayoutView extends Environment
 {
     /**
      * Contains all of the namespaces in order that the view should look at
@@ -27,13 +32,28 @@ class LayoutView extends View
      */
     public $fallback_layout = NULL;
 
-    public function __construct(Environment $environment, EngineInterface $engine, $view, $path, $data = array())
+    /**
+     * Create a new view environment instance.
+     *
+     * @param  \Illuminate\View\Engines\EngineResolver  $engines
+     * @param  \Illuminate\View\ViewFinderInterface  $finder
+     * @param  \Illuminate\Events\Dispatcher  $events
+     * @return void
+     */
+    public function __construct(EngineResolver $engines, ViewFinderInterface $finder, Dispatcher $events)
     {
         // Call the parent constructor
-        parent::__construct($environment, $engine, $view, $path, $data);
+        parent::__construct($engines, $finder, $events);
+    }
 
-        // Grab the namespace information from the configuration file
-        $this->namespaces = \Config::get('layoutview::namespaces');
+    public function setSelectedLayout($layout)
+    {
+        $this->selected_layout = $layout;
+    }
+
+    public function setFallbackLayout($layout)
+    {
+        $this->fallback_layout = $layout;
     }
 
     /**
@@ -46,6 +66,9 @@ class LayoutView extends View
      */
     public function make($view, $data = array(), $mergeData = array())
     {
+        // Grab the namespace information from the configuration file
+        $this->namespaces = Config::get('layoutview::namespaces');
+
         $target = NULL;
 
         // Cycle through all of the namespaces
@@ -55,7 +78,7 @@ class LayoutView extends View
             $derived = $namespace . $this->selected_layout . '.' . $view;
 
             // Look to see if the view exists
-            if(View::exists($derived))
+            if(self::exists($derived))
             {
                 // It does, so render it
                 $target = $derived;
@@ -66,7 +89,7 @@ class LayoutView extends View
                 $derived = $namespace . $this->fallback_layout . '.' . $view;
 
                 // Check if the fallback view exists
-                if(View::exists($derived))
+                if(self::exists($derived))
                 {
                     $target = $derived;
                 }
