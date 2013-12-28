@@ -76,6 +76,24 @@ class LayoutView extends Environment
      */
     public function make($view, $data = array(), $mergeData = array())
     {
+        // Render the layout
+        return parent::make($this->deriveView($view), $data, $mergeData);
+    }
+
+    /**
+     * Used to dervive the view that will be displayed.
+     * 
+     * @return string
+     */
+    private function deriveView($view)
+    {
+        // Check if the view already exists as specified
+        if(self::exists($view))
+        {
+            // It does so just return it
+            return $view;
+        }
+
         // Check if there are any namespaces yet
         if($this->namespaces === NULL)
         {
@@ -118,7 +136,7 @@ class LayoutView extends Environment
             }
         }
 
-        // Render the layout
-        return parent::make($target, $data, $mergeData);;
+        // Return the name of the view we found.
+        return $target;
     }
 }
