@@ -137,6 +137,6 @@ class LayoutView extends Environment
         }
 
         // Return the name of the view we found.
-        return $target;
+        return $target === NULL ? $view : $target;
     }
 }
