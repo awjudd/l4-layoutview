@@ -32,6 +32,8 @@ In your `config/app.php` add `'Awjudd\Layoutview\LayoutviewServiceProvider'` to 
 
     ),
 
+Also update the `'View'` alias in your `config/app.php` to use `'Awjudd\Layoutview\Facades\LayoutViewFacade'`.
+
     'aliases' => array(
 
         'App'             => 'Illuminate\Support\Facades\App',
