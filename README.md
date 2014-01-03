@@ -1,4 +1,4 @@
-l4-layoutview
+Laravel 4 - Layout View
 ===============
 
 [![Build Status](https://api.travis-ci.org/awjudd/l4-layoutview.png)](https://travis-ci.org/awjudd/l4-layoutview)
