@@ -16,7 +16,7 @@ A quick and easy way to handle different layouts in **Laravel 4**
 In the `require` key of `composer.json` file add the following
 
 ```
-"awjudd/layoutview": "*"
+"awjudd/layoutview": "1.0.*"
 ```
 
 Run the Composer update command
@@ -63,20 +63,20 @@ There are two ways to configure what the base and fallback layouts are.  The two
 ```php
 'layout' => array (
 
-        /**
-         * The layout that will be used to fall back on if the selected doesn't exist.
-         * 
-         * @var string
-         */
-        'fallback' => NULL,
+    /**
+     * The layout that will be used to fall back on if the selected doesn't exist.
+     * 
+     * @var string
+     */
+    'fallback' => NULL,
 
-        /**
-         * The layout that will be the first choice to be used.
-         * 
-         * @var string
-         */
-        'selected' => NULL,
-    ),
+    /**
+     * The layout that will be the first choice to be used.
+     * 
+     * @var string
+     */
+    'selected' => NULL,
+),
 ```
 
  - In your base controller call the following functions:
