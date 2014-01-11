@@ -101,6 +101,20 @@ class LayoutView extends Environment
             $this->namespaces = Config::get('layoutview::namespaces');
         }
 
+        // Check if the selected layout has been set
+        if($this->selected_layout === NULL)
+        {
+            // It hasn't been, so set it based on the config values
+            $this->selected_layout = Config::get('layoutview::layout.selected');
+        }
+
+        // Check if the fallback layout has been set
+        if($this->fallback_layout === NULL)
+        {
+            // It hasn't been, so set it based on the config values
+            $this->fallback_layout = Config::get('layoutview::layout.fallback');
+        }
+
         // The view that will be rendered
         $target = NULL;
 
@@ -137,6 +151,6 @@ class LayoutView extends Environment
         }
 
         // Return the name of the view we found.
-        return $target;
+        return $target === NULL ? $view : $target;
     }
 }
