@@ -1,4 +1,4 @@
-Laravel 4 - Layout View
+Laravel 4.2 - Layout View
 ===============
 
 [![Build Status](https://api.travis-ci.org/awjudd/l4-layoutview.png)](https://travis-ci.org/awjudd/l4-layoutview)
@@ -16,7 +16,7 @@ A quick and easy way to handle different layouts in **Laravel 4**
 In the `require` key of `composer.json` file add the following
 
 ```
-"awjudd/layoutview": "1.0.*"
+"awjudd/layoutview": "1.1.*"
 ```
 
 Run the Composer update command
