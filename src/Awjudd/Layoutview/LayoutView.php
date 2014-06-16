@@ -1,13 +1,13 @@
 <?php namespace Awjudd\Layoutview;
 
-use Illuminate\View\Environment;
+use Illuminate\View\Factory;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\ViewFinderInterface;
 use Illuminate\Events\Dispatcher;
 
 use Config;
 
-class LayoutView extends Environment
+class LayoutView extends Factory
 {
     /**
      * Contains all of the namespaces in order that the view should look at
