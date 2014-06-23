@@ -121,8 +121,15 @@ class LayoutView extends Factory
         // Cycle through all of the namespaces
         foreach($this->namespaces as $namespace)
         {
+            // Does the namespace have the colons in it?
+            if($namespace != '' && stripos($namespace, '::') === FALSE)
+            {
+                // Didn't exist, so append it
+                $namespace .= '::';
+            }
+
             // Derive the base view
-            $derived = $namespace . $this->selected_layout . '.' . $view;
+            $derived = $namespace . (is_null($this->selected_layout) ? '' :  $this->selected_layout . '.') . $view;
 
             // Look to see if the view exists
             if(self::exists($derived))
@@ -133,7 +140,7 @@ class LayoutView extends Factory
             else
             {
                 // It didn't so try in the fallback
-                $derived = $namespace . $this->fallback_layout . '.' . $view;
+                $derived = $namespace . (is_null($this->fallback_layout) ? '' : $this->selected_layout .  '.') . $view;
 
                 // Check if the fallback view exists
                 if(self::exists($derived))
