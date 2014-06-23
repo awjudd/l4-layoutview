@@ -134,6 +134,15 @@ Will render 'fallback/home/test'.
 
 Layout View is free software distributed under the terms of the MIT license
 
+## Release Notes:
+
+1.1.0:
+ - Laravel 4.2 support
+
+1.1.1:
+ - Removing the necessity to add the "::" into the namespaces
+ - Making it so that if you don't specify a base/fallback layout it will ignore the folder
+
 ## Additional Information
 
 Any issues, please [report here](https://github.com/awjudd/l4-layoutview/issues)
