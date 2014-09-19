@@ -140,7 +140,7 @@ class LayoutView extends Factory
             else
             {
                 // It didn't so try in the fallback
-                $derived = $namespace . (is_null($this->fallback_layout) ? '' : $this->selected_layout .  '.') . $view;
+                $derived = $namespace . (is_null($this->fallback_layout) ? '' : $this->fallback_layout .  '.') . $view;
 
                 // Check if the fallback view exists
                 if(self::exists($derived))
