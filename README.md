@@ -1,10 +1,10 @@
-Laravel 4.2 - Layout View
+Laravel 5 - Layout View
 ===============
 
 [![Build Status](https://api.travis-ci.org/awjudd/l4-layoutview.png)](https://travis-ci.org/awjudd/l4-layoutview)
 [![ProjectStatus](http://stillmaintained.com/awjudd/l4-layoutview.png)](http://stillmaintained.com/awjudd/l4-layoutview)
 
-A quick and easy way to handle different layouts in **Laravel 4**
+A quick and easy way to handle different layouts in **Laravel 5**
 
 ## Features
 
