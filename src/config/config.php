@@ -20,14 +20,14 @@ return [
          * 
          * @var string
          */
-        'fallback' => 'base',
+        'fallback' => null,
 
         /**
          * The layout that will be the first choice to be used.
          * 
          * @var string
          */
-        'selected' => 'base',
+        'selected' => null,
     ],
 
     /**
@@ -37,7 +37,6 @@ return [
      * @var array
      */
     'namespaces' => [
-        'icepets',
         /*
          * Should always keep a blank one here to search in no namespaces.
          */
