@@ -13,16 +13,6 @@ class LayoutviewServiceProvider extends ServiceProvider
     protected $defer = false;
 
     /**
-     * Bootstrap the service provider.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->package('awjudd/layoutview');
-    }
-
-    /**
      * Register the service provider.
      *
      * @return void
