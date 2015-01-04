@@ -98,21 +98,21 @@ class LayoutView extends Factory
         if($this->namespaces === NULL)
         {
             // There aren't so grab the namespace information from the configuration file
-            $this->namespaces = Config::get('layoutview::namespaces');
+            $this->namespaces = Config::get('layoutview::config.namespaces');
         }
 
         // Check if the selected layout has been set
         if($this->selected_layout === NULL)
         {
             // It hasn't been, so set it based on the config values
-            $this->selected_layout = Config::get('layoutview::layout.selected');
+            $this->selected_layout = Config::get('layoutview::config.layout.selected');
         }
 
         // Check if the fallback layout has been set
         if($this->fallback_layout === NULL)
         {
             // It hasn't been, so set it based on the config values
-            $this->fallback_layout = Config::get('layoutview::layout.fallback');
+            $this->fallback_layout = Config::get('layoutview::config.layout.fallback');
         }
 
         // The view that will be rendered

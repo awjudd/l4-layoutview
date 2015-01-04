@@ -19,7 +19,7 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('awjudd/layoutview');
+        $this->registerConfiguration();
     }
 
     /**
@@ -59,6 +59,33 @@ class LayoutviewServiceProvider extends ServiceProvider
     public function provides()
     {
         return array('view');
+    }
+
+    /**
+     * Register configuration files, with L5 fallback
+     */
+    protected function registerConfiguration()
+    {
+        // Is it possible to register the config?
+        if (method_exists($this->app['config'], 'package'))
+        {
+            $this->app['config']->package('awjudd/layoutview', __DIR__ . '/config');
+        }
+        else
+        {
+            // Derive the full path to the user's config
+            $userConfig = app()->configPath() . '/packages/awjudd/layoutview/config.php';
+
+            // Check if the user-configuration exists
+            if(!file_exists($userConfig))
+            {
+                $userConfig = __DIR__ .'/../../config/config.php';
+            }
+
+            // Load the config for now..
+            $config = $this->app['files']->getRequire($userConfig);
+            $this->app['config']->set('layoutview::config', $config);
+        }
     }
 
 }
