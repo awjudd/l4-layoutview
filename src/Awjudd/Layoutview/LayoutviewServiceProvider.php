@@ -66,26 +66,13 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     protected function registerConfiguration()
     {
-        // Is it possible to register the config?
-        if (method_exists($this->app['config'], 'package'))
-        {
-            $this->app['config']->package('awjudd/layoutview', __DIR__ . '/config');
-        }
-        else
-        {
-            // Derive the full path to the user's config
-            $userConfig = app()->configPath() . '/packages/awjudd/layoutview/config.php';
-
-            // Check if the user-configuration exists
-            if(!file_exists($userConfig))
-            {
-                $userConfig = __DIR__ .'/../../config/config.php';
-            }
-
-            // Load the config for now..
-            $config = $this->app['files']->getRequire($userConfig);
-            $this->app['config']->set('layoutview::config', $config);
-        }
+        $this->publishes([
+            $this->baseConfigurationFile() => config_path('layout-view.php'),
+        ]);
     }
 
+    private function baseConfigurationFile()
+    {
+        return __DIR__.'/../../../config/layout-view.php';
+    }
 }
