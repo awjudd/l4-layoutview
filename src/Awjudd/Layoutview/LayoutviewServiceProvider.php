@@ -29,7 +29,7 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('view', function($app)
+        $this->app->singleton('view', function($app)
         {
             // Next we need to grab the engine resolver instance that will be used by the
             // environment. The resolver will be used by an environment to get each of
