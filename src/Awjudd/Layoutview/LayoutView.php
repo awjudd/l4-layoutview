@@ -12,25 +12,25 @@ class LayoutView extends Factory
     /**
      * Contains all of the namespaces in order that the view should look at
      * before actually rendering.
-     * 
+     *
      * @var array
      */
-    protected $namespaces = NULL;
+    protected $namespaces = null;
 
     /**
      * The current layout folder that is selected
-     * 
+     *
      * @var string
      */
-    private $selected_layout = NULL;
+    private $selected_layout = null;
 
     /**
      * The layout folder that is used if a view isn't available in the current selected
      * layout.
-     * 
+     *
      * @var string
      */
-    private $fallback_layout = NULL;
+    private $fallback_layout = null;
 
     /**
      * Create a new view environment instance.
@@ -48,7 +48,7 @@ class LayoutView extends Factory
 
     /**
      * The layout that is being used for the core of display purposes.
-     * 
+     *
      * @param string $layout
      */
     public function setSelectedLayout($layout)
@@ -58,7 +58,7 @@ class LayoutView extends Factory
 
     /**
      * The fallback layout if the view doesn't exist in the selected layout.
-     * 
+     *
      * @param string $layout
      */
     public function setFallbackLayout($layout)
@@ -82,49 +82,43 @@ class LayoutView extends Factory
 
     /**
      * Used to dervive the view that will be displayed.
-     * 
+     *
      * @return string
      */
     private function deriveView($view)
     {
         // Check if the view already exists as specified
-        if(self::exists($view))
-        {
-            // It does so just return it
+        if (self::exists($view)) {
+        // It does so just return it
             return $view;
         }
 
         // Check if there are any namespaces yet
-        if($this->namespaces === NULL)
-        {
-            // There aren't so grab the namespace information from the configuration file
+        if ($this->namespaces === null) {
+        // There aren't so grab the namespace information from the configuration file
             $this->namespaces = config('layout-view.namespaces');
         }
 
         // Check if the selected layout has been set
-        if($this->selected_layout === NULL)
-        {
-            // It hasn't been, so set it based on the config values
+        if ($this->selected_layout === null) {
+        // It hasn't been, so set it based on the config values
             $this->selected_layout = config('layout-view.layout.selected');
         }
 
         // Check if the fallback layout has been set
-        if($this->fallback_layout === NULL)
-        {
-            // It hasn't been, so set it based on the config values
+        if ($this->fallback_layout === null) {
+        // It hasn't been, so set it based on the config values
             $this->fallback_layout = config('layout-view.layout.fallback');
         }
 
         // The view that will be rendered
-        $target = NULL;
+        $target = null;
 
         // Cycle through all of the namespaces
-        foreach($this->namespaces as $namespace)
-        {
-            // Does the namespace have the colons in it?
-            if($namespace != '' && stripos($namespace, '::') === FALSE)
-            {
-                // Didn't exist, so append it
+        foreach ($this->namespaces as $namespace) {
+        // Does the namespace have the colons in it?
+            if ($namespace != '' && stripos($namespace, '::') === false) {
+            // Didn't exist, so append it
                 $namespace .= '::';
             }
 
@@ -132,32 +126,27 @@ class LayoutView extends Factory
             $derived = $namespace . (is_null($this->selected_layout) ? '' :  $this->selected_layout . '.') . $view;
 
             // Look to see if the view exists
-            if(self::exists($derived))
-            {
-                // It does, so render it
+            if (self::exists($derived)) {
+            // It does, so render it
                 $target = $derived;
-            }
-            else
-            {
+            } else {
                 // It didn't so try in the fallback
                 $derived = $namespace . (is_null($this->fallback_layout) ? '' : $this->fallback_layout .  '.') . $view;
 
                 // Check if the fallback view exists
-                if(self::exists($derived))
-                {
+                if (self::exists($derived)) {
                     $target = $derived;
                 }
             }
 
             // Check if we found a match
-            if($target !== NULL)
-            {
-                // We did, so no sense looping
+            if ($target !== null) {
+            // We did, so no sense looping
                 break;
             }
         }
 
         // Return the name of the view we found.
-        return $target === NULL ? $view : $target;
+        return $target === null ? $view : $target;
     }
 }

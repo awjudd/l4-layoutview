@@ -10,21 +10,21 @@ return [
 
     /**
      * Contains all of the layout-specific configuration values
-     * 
+     *
      * @var array
      */
     'layout' => [
 
         /**
          * The layout that will be used to fall back on if the selected doesn't exist.
-         * 
+         *
          * @var string
          */
         'fallback' => null,
 
         /**
          * The layout that will be the first choice to be used.
-         * 
+         *
          * @var string
          */
         'selected' => null,
@@ -33,7 +33,7 @@ return [
     /**
      * Contains all of the namespaces in order that the view should look at
      * before actually rendering.
-     * 
+     *
      * @var array
      */
     'namespaces' => [
