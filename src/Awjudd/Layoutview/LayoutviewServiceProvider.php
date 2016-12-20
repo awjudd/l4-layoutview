@@ -29,8 +29,7 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('view', function($app)
-        {
+        $this->app->singleton('view', function ($app) {
             // Next we need to grab the engine resolver instance that will be used by the
             // environment. The resolver will be used by an environment to get each of
             // the various engine implementations such as plain PHP or Blade engine.
@@ -58,7 +57,7 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('view');
+        return ['view'];
     }
 
     /**
