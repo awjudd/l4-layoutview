@@ -57,7 +57,7 @@ class LayoutviewServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('view');
+        return ['view'];
     }
 
     /**

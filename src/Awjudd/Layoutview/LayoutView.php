@@ -74,7 +74,7 @@ class LayoutView extends Factory
      * @param  array   $mergeData
      * @return \Illuminate\View\View
      */
-    public function make($view, $data = array(), $mergeData = array())
+    public function make($view, $data = [], $mergeData = [])
     {
         // Render the layout
         return parent::make($this->deriveView($view), $data, $mergeData);
